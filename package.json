@@ -1,0 +1,19 @@
+{
+  "name": "planning-fdh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjcandel/planning-FDH.git"
+  },
+  "author": "Sophie CANDEL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjcandel/planning-FDH/issues"
+  },
+  "homepage": "https://github.com/sjcandel/planning-FDH#readme"
+}
