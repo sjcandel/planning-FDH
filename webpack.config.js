@@ -6,7 +6,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: [
     './index.js', // prend le fichier "index.js"...
-    ...glob.sync('./services/*.js') // ... et y ajoute tous les fichiers en .js qui sont dans le dossier "services"
+    ...glob.sync('./services/*.js'), // ... et y ajoute tous les fichiers en .js qui sont dans le dossier "services"
+    ...glob.sync('./controllers/*.js') // ... et y ajoute tous les fichiers en .js qui sont dans le dossier "controllers"
   ],
   output: {
     filename: 'bundle.js', // met tous les fichiers récupérés dans un nouveau fichier "bundle.js" ...
