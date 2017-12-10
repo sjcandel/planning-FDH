@@ -1,9 +1,10 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
-import ngStorage from 'ngstorage';
+
 
 var app = angular.module('fdhApp', ['fdhModule']);
-var fdhModule = angular.module('fdhModule', ['ngStorage', 'ngRoute']);
+var fdhModule = angular.module('fdhModule', ['ngRoute']);
+
 
 ////////////////////////////////////////////////////////////
 // ROUTING
@@ -21,3 +22,6 @@ fdhModule.config(['$routeProvider', '$locationProvider', function($routeProvider
     })
     .otherwise({redirectTo: '/group'})
 }]);
+
+
+

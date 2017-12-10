@@ -1,1 +1,38 @@
-<h1>Groupes</h1>
+<div class="wrapper">
+        <header>
+            <h1>Groupes</h1>
+            <p><input type="text" placeholder="Rechercher..." ng-model="search"></p>
+        </header>
+        
+        <div class="main">
+            <div ng-repeat="group in groups | filter:search | orderBy: 'name'">
+                <div class="card">
+                    <h2>{{group.name}}</h2>
+                    <p>{{group.country}}</p>
+                    <div class="btnDetails" ng-click="details = !details">
+                        <p>Événements associés </p>
+                        <p>&#129171</p>
+                    </div>
+                    <div ng-show="details" ng-repeat="event in group.events | orderBy: 'date'">
+                        <ul>
+                            <li>{{event.name}} le {{event.date}}</li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="aside">
+            <h3>Créer un groupe :</h3>
+            <form name="newGroup" ng-submit="createGroup(newGroup.$valid)" novalidate>
+                <input type="text" value="name" name="groupName" placeholder="Nom" ng-model="createGroupName" required ng-class="{ 'invalidInput' : newGroup.groupName.$error.required && submitted }"></input>
+                <p ng-show="newGroup.groupName.$error.required && submitted">Un nom est requis</p>
+
+                <input type="text" value="country" name="groupCountry" placeholder="Pays" ng-model="createGroupCountry" required ng-class="{ 'invalidInput' : newGroup.groupCountry.$error.required && submitted }"></input>
+                <p ng-show="newGroup.groupCountry.$error.required && submitted">Un pays est requis</p>
+            
+                <input type="submit"></input>
+            </form>
+        </div>
+</div>

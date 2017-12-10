@@ -1,1 +1,65 @@
-<h1>Planning</h1>
+
+<div class="wrapper">
+    <header id="header">
+        <h1>Planning</h1>
+        <p><input type="text" placeholder="Rechercher..." ng-model="search"></p>
+    </header>
+            
+    <div class="main">
+        <div ng-repeat="event in events | orderBy:'date' | filter:search">
+            <div class="card">
+                <h2>{{event.name}}</h2>
+                <p>{{event.date}} à {{event.time}}</p>
+                <div class="btnDetails" ng-click="details = !details">
+                    <p>Plus d'informations</p>
+                    <p>&#129171</p>
+                </div>
+                <div ng-show="details">
+                    <p><span class="strong">Lieu : </span>{{event.location}}</p>
+                    <p><span class="strong">Durée : </span>{{event.duration}} minutes</p>
+                    <p><span class="strong">Groupe : </span>{{event.group.name}} - {{event.group.country}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="aside">
+        <h3>Créer un événement :</h3>
+        <form name="newEvent" ng-submit="createEvent(newEvent.$valid)" novalidate>
+           
+            <select name="eventName" ng-model="createEventName" required ng-class="{ 'invalidInput' : newEvent.eventName.$error.required && submitted }">
+                <option value="" selected disabled hidden>Type d'événement</option>
+                <option value="Soirée d'un monde à l'autre">Soirée d'un monde à l'autre</option>
+                <option value="Dîner spectacle">Dîner spectacle</option>
+                <option value="Quatre heures évasion">Quatre heures évasion</option>
+                <option value="Folklore by night">Folklore by night</option>
+            </select>
+            <p ng-show="newEvent.eventName.$error.required && submitted">Le type d'événement est requis</p>
+        
+            <input type="datetime-local" value="date" name="eventDate" placeholder="Date" ng-model="createEventDate" required ng-class="{ 'invalidInput' : newEvent.eventDate.$error.required && submitted }"></input>
+            <p ng-show="newEvent.eventDate.$error.required && submitted">Une date est requise</p>
+
+            <select ng-model="createEventLocation">
+                <option value="" selected disabled hidden>Lieu</option>
+                <option value="Forum des cultures">Forum des cultures</option>    
+                <option value="Théâtre">Théâtre</option>    
+                <option value="Halle aux houblons">Halle aux Houblons</option>    
+            </select>
+
+            <select ng-model="createEventDuration">
+                <option value="" selected disabled hidden>Durée</option>
+                <option value="30min">30 minutes</option>    
+                <option value="40min">40 minutes</option>    
+                <option value="60min">60 minutes</option>    
+            </select>
+
+            <select ng-model="createEventGroup">
+                <option value="" selected disabled hidden>Groupe</option>
+                <option ng-repeat="group in groups" ng-value="{{group.id}}">{{group.name}} - {{group.country}}</option>    
+            </select>
+        
+            <input type="submit"></input>
+        </form>
+    </div>
+</div>
